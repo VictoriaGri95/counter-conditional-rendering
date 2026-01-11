@@ -1,0 +1,15 @@
+.gridWrapper {
+  display: grid;
+  grid-template-columns: minmax(500px, 550px);
+  place-content: center;
+  gap: 10px;
+  //justify-content: space-around;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+
+
+

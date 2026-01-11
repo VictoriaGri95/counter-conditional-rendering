@@ -1,0 +1,23 @@
+.btn {
+  background-color: #60b9ea;
+  color: #242424;
+  border: 2px solid #60b9ea;
+  border-radius: 10px;
+  padding: 0.1em 0.7em;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 800;
+
+  &:disabled {
+    background-color: #60b9ea;
+    border: 2px solid #60b9ea;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:active {
+    background-color: #242424;
+    border: 2px solid #242424;
+    color: #60b9ea;
+  }
+}
