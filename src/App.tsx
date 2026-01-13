@@ -10,6 +10,7 @@ function App() {
   const [maxValue, setMaxValue] = useState(8);
   const [startValue, setStartValue] = useState(0);
   const [counter, setCounter] = useState<number>(0);
+  const [settingsError, setSettingsError] = useState(false);
 
   const onClickIncHandler = () => {
     const newCount = counter + 1;
@@ -27,8 +28,10 @@ function App() {
   }
 
   const onSetClickHandler = () => {
-    setShowSettings(false)
-    setCounter(startValue)
+    if (!settingsError) {
+      setShowSettings(false)
+      setCounter(startValue)
+    }
   }
 
   return (
@@ -41,15 +44,17 @@ function App() {
             setMaxValue={setMaxValue}
             setStartValue={setStartValue}
             onSetClick={onSetClickHandler}
+            hasError={settingsError}
+            setHasError={setSettingsError}
           />
         ) : (
           <Counter
-          counter={counter}
-          onInc={onClickIncHandler}
-          onReset={onClickResetHandler}
-          maxValue={maxValue}
-          startValue={startValue}
-          onOpenSettings={setShowSettingsHandle}
+            counter={counter}
+            onInc={onClickIncHandler}
+            onReset={onClickResetHandler}
+            maxValue={maxValue}
+            startValue={startValue}
+            onOpenSettings={setShowSettingsHandle}
           />
         )
       }
