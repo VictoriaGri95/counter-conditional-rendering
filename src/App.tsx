@@ -19,7 +19,7 @@ function App() {
     const newValue = localStorage.getItem("counterValue");
     return newValue && newValue !== "undefined" ? JSON.parse(newValue).startValue : 0;
   });
-  const [counter, setCounter] = useState<number>(0);
+  const [counter, setCounter] = useState<number>(startValue);
 
   // useEffect(() => {
   //   const valueAsString = localStorage.getItem('counterValue')
