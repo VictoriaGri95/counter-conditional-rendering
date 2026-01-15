@@ -3,7 +3,7 @@ import {
   DisplayCounterSettings
 } from "./displayCounterSettings/DisplayCounterSettings.tsx";
 import s from './CounterSettings.module.scss'
-import {useState} from "react";
+
 
 type CounterSettingsProps = {
   maxValue: number
@@ -21,9 +21,10 @@ export const CounterSettings = ({
                                   setMaxValue,
                                   setStartValue,
                                   onSetClick,
+                                  setHasError,
+                                  hasError,
                                 }: CounterSettingsProps) => {
 
-  const [hasError, setHasError] = useState(false);
   return (
     <div className={s.counterWrapper}>
       <DisplayCounterSettings
@@ -32,12 +33,14 @@ export const CounterSettings = ({
         setMaxValue={setMaxValue}
         setStartValue={setStartValue}
         setHasError={setHasError}
+        hasError={hasError}
       />
       <div className={s.buttonsWrapper}>
         <Button
           title="set"
           onClick={onSetClick}
           disabled={hasError}
+
         />
       </div>
     </div>

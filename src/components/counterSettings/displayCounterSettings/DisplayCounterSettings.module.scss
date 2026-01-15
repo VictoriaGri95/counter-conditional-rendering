@@ -5,40 +5,38 @@
   padding: 20px 10px;
   border-radius: 10px;
   color: #60b9ea;
-  gap: 30px; // отступ между блоками Max value и Start value
+  gap: 30px;
   height: 180px;
   justify-content: center;
 }
 
 .settingInput {
   display: grid;
-  grid-template-columns: 1fr 1fr; // label занимает минимальную ширину, input - все оставшееся
+  grid-template-columns: 1fr 1fr;
   column-gap: 10px;
-  //align-items: center; // выравнивание по вертикали
+
 
 }
 
 .label {
   color: #60b9ea;
-  font-size: 1.5rem; // уменьшил размер для лучшего отображения
+  font-size: 1.5rem;
   font-weight: 800;
-  white-space: nowrap; // чтобы текст не переносился
-  //display: contents;
+  white-space: nowrap;
   align-self: center;
 }
 
 .input {
-  width: 100%; // занимает всю доступную ширину
+  width: 100%;
   padding: 8px 12px;
   border: 2px solid #60b9ea;
   border-radius: 4px;
   font-size: 16px;
   color: #242424;
-  //background: transparent;
 }
 
 .input.error {
- outline: 2px solid red;
+  outline: 2px solid red;
   border: 2px solid red;
   background-color: #eab5b5;
 }

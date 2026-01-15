@@ -15,7 +15,7 @@ export const DisplayCounterSettings = ({
                                          startValue,
                                          setMaxValue,
                                          setStartValue,
-  setHasError,
+                                         setHasError,
                                        }: DisplayCounterSettingsProps) => {
 
   const [startError, setStartError] = useState(false);
@@ -25,10 +25,10 @@ export const DisplayCounterSettings = ({
     const value = +e.target.value;
 
     setStartValue(value);
-const error = value < 0 || value >= maxValue
+    const error = value < 0 || value >= maxValue
 
-      setStartError(error);
-setHasError(error || maxError)
+    setStartError(error);
+    setHasError(error || maxError)
 
   };
 
@@ -36,9 +36,9 @@ setHasError(error || maxError)
     const value = +e.target.value;
 
     setMaxValue(value);
-const error = value <= startValue || value < 0
-      setMaxError(error);
-setHasError(error || startError)
+    const error = value <= startValue || value < 0
+    setMaxError(error);
+    setHasError(error || startError)
 
 
   }

@@ -1,16 +1,37 @@
 import s from './App.module.scss'
 import {Counter} from "./components/counter/Counter.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {
   CounterSettings
 } from "./components/counterSettings/CounterSettings.tsx";
 
 function App() {
   const [showSettings, setShowSettings] = useState(false)
-  const [maxValue, setMaxValue] = useState(8);
-  const [startValue, setStartValue] = useState(0);
-  const [counter, setCounter] = useState<number>(0);
+  // const [maxValue, setMaxValue] = useState(8);
+  // const [startValue, setStartValue] = useState(0);
+
   const [settingsError, setSettingsError] = useState(false);
+  const [maxValue, setMaxValue] = useState(() => {
+    const newValue = localStorage.getItem("counterValue");
+    return newValue && newValue !== "undefined" ? JSON.parse(newValue).maxValue : 8;
+  });
+  const [startValue, setStartValue] = useState(() => {
+    const newValue = localStorage.getItem("counterValue");
+    return newValue && newValue !== "undefined" ? JSON.parse(newValue).startValue : 0;
+  });
+  const [counter, setCounter] = useState<number>(0);
+
+  // useEffect(() => {
+  //   const valueAsString = localStorage.getItem('counterValue')
+  //     if (valueAsString) {
+  //       const newValue =  JSON.parse(valueAsString)
+  //       setCounter(newValue)
+  //     }
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem('counterValue', JSON.stringify({startValue, maxValue}))
+  }, [startValue, maxValue]);
 
   const onClickIncHandler = () => {
     const newCount = counter + 1;
