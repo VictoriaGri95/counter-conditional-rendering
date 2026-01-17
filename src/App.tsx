@@ -1,37 +1,24 @@
 import s from './App.module.scss'
 import {Counter} from "./components/counter/Counter.tsx";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {
   CounterSettings
 } from "./components/counterSettings/CounterSettings.tsx";
 
 function App() {
   const [showSettings, setShowSettings] = useState(false)
-  // const [maxValue, setMaxValue] = useState(8);
-  // const [startValue, setStartValue] = useState(0);
+
+  const getValueFromLS = (key: "startValue" | "maxValue", number: number) => {
+    const newValue = localStorage.getItem("counterValue");
+    return newValue && newValue !== "undefined" ? JSON.parse(newValue)[key] : number;
+  }
+  const MAX_VALUE = 8;
+  const START_VALUE = 0;
 
   const [settingsError, setSettingsError] = useState(false);
-  const [maxValue, setMaxValue] = useState(() => {
-    const newValue = localStorage.getItem("counterValue");
-    return newValue && newValue !== "undefined" ? JSON.parse(newValue).maxValue : 8;
-  });
-  const [startValue, setStartValue] = useState(() => {
-    const newValue = localStorage.getItem("counterValue");
-    return newValue && newValue !== "undefined" ? JSON.parse(newValue).startValue : 0;
-  });
+  const [maxValue, setMaxValue] = useState(getValueFromLS("maxValue", MAX_VALUE));
+  const [startValue, setStartValue] = useState(getValueFromLS("startValue", START_VALUE));
   const [counter, setCounter] = useState<number>(startValue);
-
-  // useEffect(() => {
-  //   const valueAsString = localStorage.getItem('counterValue')
-  //     if (valueAsString) {
-  //       const newValue =  JSON.parse(valueAsString)
-  //       setCounter(newValue)
-  //     }
-  // }, []);
-
-  useEffect(() => {
-    localStorage.setItem('counterValue', JSON.stringify({startValue, maxValue}))
-  }, [startValue, maxValue]);
 
   const onClickIncHandler = () => {
     const newCount = counter + 1;
@@ -52,6 +39,7 @@ function App() {
     if (!settingsError) {
       setShowSettings(false)
       setCounter(startValue)
+      localStorage.setItem('counterValue', JSON.stringify({startValue, maxValue}))
     }
   }
 

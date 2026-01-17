@@ -22,25 +22,22 @@ export const DisplayCounterSettings = ({
   const [maxError, setMaxError] = useState(false);
 
   const handleStartChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = +e.target.value;
-
+    const value = parseInt(e.target.value) || 0;
+    e.target.value = value.toString();
     setStartValue(value);
     const error = value < 0 || value >= maxValue
-
     setStartError(error);
     setHasError(error || maxError)
 
   };
 
   const handleMaxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = +e.target.value;
-
+    const value = parseInt(e.target.value) || 0;
+    e.target.value = value.toString();
     setMaxValue(value);
-    const error = value <= startValue || value < 0
+    const error = value <= startValue || value < 0;
     setMaxError(error);
-    setHasError(error || startError)
-
-
+    setHasError(error || startError);
   }
 
   return (
